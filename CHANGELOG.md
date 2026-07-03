@@ -7,6 +7,10 @@ the release.
 
 ## Unreleased
 
+* [cart] Make the `cartFailure` feature flag rate configurable (10%-100%)
+  instead of a fixed all-or-nothing toggle, matching the `paymentFailure`
+  pattern
+  ([#1721](https://github.com/open-telemetry/opentelemetry-demo/issues/1721))
 * [frontend] Avoid hardcoded `localhost:8080` image URLs during SSR and
   normalize leading slashes in the custom image loader
   ([#3582](https://github.com/open-telemetry/opentelemetry-demo/pull/3582))
