@@ -13,7 +13,6 @@ namespace cart.services;
 public class CartService : Oteldemo.CartService.CartServiceBase
 {
     private static readonly Empty Empty = new();
-    private readonly Random random = new Random();
     private readonly ICartStore _badCartStore;
     private readonly ICartStore _cartStore;
     private readonly IFeatureClient _featureFlagHelper;
@@ -81,7 +80,7 @@ public class CartService : Oteldemo.CartService.CartServiceBase
         try
         {
             var cartFailureRate = await _featureFlagHelper.GetDoubleValueAsync("cartFailure", 0);
-            if (cartFailureRate > 0 && random.NextDouble() < cartFailureRate)
+            if (cartFailureRate > 0 && Random.Shared.NextDouble() < cartFailureRate)
             {
                 await _badCartStore.EmptyCartAsync(request.UserId);
             }
