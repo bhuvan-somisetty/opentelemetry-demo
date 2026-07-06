@@ -7,6 +7,11 @@ the release.
 
 ## Unreleased
 
+* [load-generator] Lower the `WebsiteBrowserUser` weight so only a small
+  proportion of virtual users spawn a persistent headless Chromium process
+  when browser traffic is enabled, instead of scaling 1:1 with `LOCUST_USERS`
+  and exhausting the container's memory limit
+  ([#2678](https://github.com/open-telemetry/opentelemetry-demo/issues/2678))
 * [cart] Make the `cartFailure` feature flag rate configurable as percentage
   (off - no failures, 10%, 25%, 50%, 75%, 90%, 100% - always fail) instead of
   a fixed all-or-nothing toggle, matching the `paymentFailure` pattern
