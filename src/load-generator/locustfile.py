@@ -225,14 +225,9 @@ browser_traffic_enabled = os.environ.get("LOCUST_BROWSER_TRAFFIC_ENABLED", "").l
 
 if browser_traffic_enabled:
     class WebsiteBrowserUser(PlaywrightUser):
-        # Each browser user keeps its own headless Chromium process running for
-        # its entire lifetime (locust-plugins recycles the page/context between
-        # tasks, not the browser process). With the default 1:1 weight against
-        # WebsiteUser, half of LOCUST_USERS would become persistent Chromium
-        # processes, which is what drives the load generator's memory usage up
-        # linearly with user count. Keeping this weight low bounds the number of
-        # concurrent browser processes regardless of how LOCUST_USERS is scaled.
-        weight = 1
+        # Bounds how many concurrent Chromium processes run, since each one
+        # persists for the user's lifetime instead of being recycled per task.
+        weight = int(os.environ.get("LOCUST_BROWSER_USER_WEIGHT", "1"))
         headless = True  # to use a headless browser, without a GUI
 
         @task
