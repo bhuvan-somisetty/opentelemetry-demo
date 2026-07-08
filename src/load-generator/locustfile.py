@@ -111,7 +111,7 @@ people_file = open('people.json')
 people = json.load(people_file)
 
 class WebsiteUser(HttpUser):
-    weight = 9
+    weight = int(os.environ.get("LOCUST_HTTP_USER_WEIGHT", "9"))
     wait_time = between(1, 10)
 
     def __init__(self, *args, **kwargs):
