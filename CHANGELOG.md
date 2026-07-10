@@ -7,6 +7,11 @@ the release.
 
 ## Unreleased
 
+* [frontend] Add custom `404` and `500` error pages. Without them, `_app.tsx`'s
+  custom `getInitialProps` disables Next.js's automatic static optimization
+  for the built-in error pages too, so a server-side error crashes with
+  `Cannot find module for page: /500` instead of showing an error page
+  ([#2144](https://github.com/open-telemetry/opentelemetry-demo/issues/2144))
 * [compose] Run `checkout`, `product-catalog`, and `shipping` with a
   read-only root filesystem (`read_only: true` plus a `/tmp` tmpfs mount),
   for container platforms that prohibit writable root filesystems. Limited
