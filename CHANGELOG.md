@@ -12,6 +12,10 @@ the release.
   for the built-in error pages too, so a server-side error crashes with
   `Cannot find module for page: /500` instead of showing an error page
   ([#2144](https://github.com/open-telemetry/opentelemetry-demo/issues/2144))
+* [opamp-server] Bump `OPAMP_GO_REF` to pick up example-server UI improvements
+  from `opamp-go` (improved agent list, agent uptime on the agent page, and
+  startup logging of the OpAMP/admin UI addresses).
+  ([#3685](https://github.com/open-telemetry/opentelemetry-demo/pull/3685))
 * [compose] Run `checkout`, `product-catalog`, and `shipping` with a
   read-only root filesystem (`read_only: true` plus a `/tmp` tmpfs mount),
   for container platforms that prohibit writable root filesystems. Limited
@@ -367,6 +371,8 @@ the release.
   ([#3633](https://github.com/open-telemetry/opentelemetry-demo/pull/3633))
 * [profiles] Add resource attributes to profiles
   ([#3659](https://github.com/open-telemetry/opentelemetry-demo/pull/3659))
+* [flagd] Fix OTel exporter config
+  ([#3667](https://github.com/open-telemetry/opentelemetry-demo/pull/3667))
 
 ## 2.2.0
 
