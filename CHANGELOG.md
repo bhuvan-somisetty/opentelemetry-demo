@@ -7,6 +7,12 @@ the release.
 
 ## Unreleased
 
+* [react-native-app] Use `getUniqueIdSync()` instead of `getDeviceId()` to
+  populate the `device.id` resource attribute. `getDeviceId()` returns the
+  hardware/model identifier (e.g. `iPhone13,4`), which is the same for every
+  physical unit of that model, so `device.id` was identical across different
+  devices instead of uniquely identifying each one
+  ([#3722](https://github.com/open-telemetry/opentelemetry-demo/issues/3722))
 * [kafka] Add `KAFKA_TOPIC` environment variable to configure the Kafka topic
   name used by `checkout`, `accounting`, and `fraud-detection`, defaulting to
   `orders` to preserve existing behavior
