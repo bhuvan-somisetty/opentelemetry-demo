@@ -13,6 +13,10 @@ the release.
   physical unit of that model, so `device.id` was identical across different
   devices instead of uniquely identifying each one
   ([#3722](https://github.com/open-telemetry/opentelemetry-demo/issues/3722))
+* [currency] Fix `IPV6_ENABLED` check comparing a `const char*` pointer
+  against a string literal instead of the string's contents, so the check
+  was always false and the service could never bind to `[::]`
+  ([#3735](https://github.com/open-telemetry/opentelemetry-demo/issues/3735))
 * [kafka] Add `KAFKA_TOPIC` environment variable to configure the Kafka topic
   name used by `checkout`, `accounting`, and `fraud-detection`, defaulting to
   `orders` to preserve existing behavior
