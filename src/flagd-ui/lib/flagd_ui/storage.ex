@@ -20,7 +20,21 @@ defmodule FlagdUi.Storage do
 
   @impl true
   def init(_) do
-    state = @file_path |> File.read!() |> Jason.decode!()
+    state =
+      case File.read(@file_path) do
+        {:ok, ""} ->
+          %{}
+
+        {:ok, content} ->
+          case Jason.decode(content) do
+            {:ok, parsed} -> parsed
+            {:error, _} -> %{}
+          end
+
+        {:error, _} ->
+          %{}
+      end
+
     Logger.info("Read new state from file")
 
     {:ok, state}
@@ -33,7 +47,11 @@ defmodule FlagdUi.Storage do
 
   @impl true
   def handle_cast({:replace, json_string}, _) do
-    new_state = Jason.decode!(json_string)
+    new_state =
+      case Jason.decode(json_string) do
+        {:ok, parsed} -> parsed
+        {:error, _} -> %{}
+      end
 
     write_state(json_string)
 
