@@ -77,7 +77,12 @@ defmodule FlagdUi.Storage do
   end
 
   defp write_state(json_string) do
-    File.write!(@file_path, json_string)
+    # Write-then-rename so concurrent readers (e.g. flagd, or another Storage
+    # process in tests) never observe a truncated/empty file mid-write:
+    # rename/2 is atomic on the same filesystem, plain File.write!/2 is not.
+    tmp_path = @file_path <> ".tmp"
+    File.write!(tmp_path, json_string)
+    File.rename!(tmp_path, @file_path)
 
     Logger.info("Wrote new state to file")
   end
