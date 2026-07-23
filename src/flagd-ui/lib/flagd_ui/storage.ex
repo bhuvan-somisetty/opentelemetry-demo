@@ -46,16 +46,16 @@ defmodule FlagdUi.Storage do
   end
 
   @impl true
-  def handle_cast({:replace, json_string}, _) do
-    new_state =
-      case Jason.decode(json_string) do
-        {:ok, parsed} -> parsed
-        {:error, _} -> %{}
-      end
+  def handle_cast({:replace, json_string}, state) do
+    case Jason.decode(json_string) do
+      {:ok, new_state} ->
+        write_state(json_string)
+        {:noreply, new_state}
 
-    write_state(json_string)
-
-    {:noreply, new_state}
+      {:error, _} ->
+        Logger.warning("Ignoring replace with invalid JSON")
+        {:noreply, state}
+    end
   end
 
   @impl true
