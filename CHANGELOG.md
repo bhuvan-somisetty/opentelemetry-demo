@@ -7,6 +7,9 @@ the release.
 
 ## Unreleased
 
+* [payment] Add `error.type` attribute to error spans in `charge.js` and
+  `index.js` to align with OpenTelemetry Semantic Conventions for errors
+  ([#3758](https://github.com/open-telemetry/opentelemetry-demo/issues/3758))
 * [react-native-app] Fix `ProductCard` price calculation where `nanos` was
   divided by `100_000_000` (1e8) instead of `1_000_000_000` (1e9), inflating
   the displayed price
