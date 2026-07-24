@@ -7,6 +7,10 @@ the release.
 
 ## Unreleased
 
+* [react-native-app] Catch errors from `placeOrder` in the Cart screen and
+  show an error toast so payment failures are visible to the user instead of
+  being silently dropped
+  ([#3760](https://github.com/open-telemetry/opentelemetry-demo/issues/3760))
 * [react-native-app] Fix `ProductCard` price calculation where `nanos` was
   divided by `100_000_000` (1e8) instead of `1_000_000_000` (1e9), inflating
   the displayed price
